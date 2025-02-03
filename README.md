@@ -38,16 +38,27 @@ COPY ./initdb-scripts/*.sql /docker-entrypoint-initdb.d/
 
 # Question 1-4 Why do we need a multistage build? And explain each step of this Dockerfile.
 
-Un multi-stage build dans Docker est utilisé pour réduire la taille de l'image finale et séparer les étapes de construction et d'exécution. Cela permet de garder l'image exempte de dépendances inutiles pour l'exécution de l'application
+Un multi-stage build dans Docker est utilisé pour réduire la taille de l'image finale et séparer les étapes de construction et d'exécution, ça de réduit la taille des images, améliore la sécurité, simplifie la gestion 
 
 ## Dockerfile
 
-FROM maven:3.9.9-amazoncorretto-21 AS myapp-build -> On utilise une image maven pour construire l'application
-ENV MYAPP_HOME=/opt/myapp -> On définit une variable d'environnement pour le répertoire de l'application
-WORKDIR $MYAPP_HOME -> On se place dans le répertoire de l'application
-COPY pom.xml . -> On copie le fichier pom.xml
-COPY src ./src -> On copie le répertoire src
-RUN mvn package -DskipTests -> On construit l'application en sautant les tests
+FROM maven:3.9.9-amazoncorretto-21 AS myapp-build 
+-> On utilise une image maven pour construire l'application
+
+ENV MYAPP_HOME=/opt/myapp 
+-> On définit une variable d'environnement pour le répertoire de l'application
+
+WORKDIR $MYAPP_HOME 
+-> On se place dans le répertoire de l'application
+
+COPY pom.xml . 
+-> On copie le fichier pom.xml
+
+COPY src ./src 
+-> On copie le répertoire src
+
+RUN mvn package -DskipTests 
+-> On construit l'application en sautant les tests
 
 FROM amazoncorretto:21 -> On utilise une image amazoncorretto pour exécuter l'application
 ENV MYAPP_HOME=/opt/myapp  -> On définit une variable d'environnement pour le répertoire de l'application
