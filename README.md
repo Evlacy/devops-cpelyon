@@ -4,11 +4,8 @@
 - docker run -p 8888:5000 --name myfirstapp evlacy/myfirstapp
 - docker-machine ip default
 
---
-
 # Question 1-1 Why should we run the container with a flag -e to give the environment variables?
 Pour donner les variables d'environnement au conteneur pour que l'application fonctionne correctement et puisse se connecter à la base de données et à d'autres services nécessaires. De plus, on évite de mettre les informations sensibles dans le code source
-
 
 # Question 1-2 Why do we need a volume to be attached to our postgres container?
 Un volume permet de conserver les données de la base de données même si le conteneur est arrêté ou supprimé. Sinon, les données seraient perdues à chaque redémarrage du conteneur 
