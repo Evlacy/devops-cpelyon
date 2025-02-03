@@ -12,7 +12,7 @@ services:
       - db
 
   db:
-    build: "db"
+    build: "tp-docker/db"
     container_name: custom-postgres-container
     environment:
       - POSTGRES_DB=${POSTGRES_DB}

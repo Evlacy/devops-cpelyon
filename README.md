@@ -100,7 +100,7 @@ services:
       - db # On définit les dépendances 
 
   db:
-    build: "db" # On construit l'image à partir du Dockerfile
+    build: "tp-docker/db" # On construit l'image à partir du Dockerfile
     container_name: custom-postgres-container # On donne un nom au conteneur
     environment:
       - POSTGRES_DB=${POSTGRES_DB} # On définit les variables d'environnement
