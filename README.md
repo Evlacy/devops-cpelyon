@@ -1,8 +1,8 @@
 # DevOps-CPElyon
 
-docker build -t evlacy/myfirstapp .
-docker run -p 8888:5000 --name myfirstapp evlacy/myfirstapp
-docker-machine ip default
+- docker build -t evlacy/myfirstapp .
+- docker run -p 8888:5000 --name myfirstapp evlacy/myfirstapp
+- docker-machine ip default
 
 --
 
