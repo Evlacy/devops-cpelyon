@@ -21,7 +21,7 @@ services:
     networks:
       - my-network
     volumes:
-      - ./db/data:/var/lib/postgresql/data
+      - ./tp-docker/data:/var/lib/postgresql/data
 
   http:
     build: "tp-docker/proxy"
