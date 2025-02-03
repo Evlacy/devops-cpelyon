@@ -1,0 +1,5 @@
+# docker build -t proxy .
+# docker run -d -p 80:80 --name proxy-container --network app-network proxy
+
+# docker network connect app-network proxy-container
+# docker network inspect app-network

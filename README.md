@@ -63,3 +63,14 @@ WORKDIR $MYAPP_HOME -> On se place dans le répertoire de l'application
 COPY --from=myapp-build $MYAPP_HOME/target/*.jar $MYAPP_HOME/myapp.jar -> On copie le fichier jar de l'étape de build dans l'étape de run
 
 ENTRYPOINT ["java", "-jar", "myapp.jar"] -> On exécute l'application avec la commande java -jar myapp.jar
+
+# Question 1-5 Why do we need a reverse proxy?
+
+- Pour rediriger les requêtes des clients vers les serveurs appropriés
+- Pour cacher les serveurs et améliorer les performances
+- Pour sécuriser les serveurs en masquant les informations sensibles
+
+# Question 1-6 Why is docker-compose so important?
+# Question 1-7 Document docker-compose most important commands. 1-8 Document your docker-compose file.
+# Question 1-9 Document your publication commands and published images in dockerhub.
+# Question 1-10 Why do we put our images into an online repo?
