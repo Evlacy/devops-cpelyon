@@ -23,7 +23,8 @@ jobs:  # Déclaration des jobs
           java-version: '21'  # Version 
 
       - name: Build and test with Maven  # Nom de l'étape
-        run: mvn clean verify  # Commande Maven pour construire le projet
+        run: mvn -B verify sonar:sonar -Dsonar.projectKey=Evlacy_devops-cpelyon -Dsonar.organization=Evlacy -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=${{ secrets.SONAR_TOKEN }}  --file ./pom.xml
+
         # -B : mode batch 
         working-directory: github/simple-api  # Répertoire de travail
 
