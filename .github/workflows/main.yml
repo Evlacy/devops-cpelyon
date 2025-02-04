@@ -43,19 +43,19 @@ jobs:  # Déclaration des jobs
         uses: docker/build-push-action@v3
         with:
           context: ./github/simple-api
-          tags:  ${{secrets.DOCKERHUB_USERNAME}}/tp-devops-simple-api:latest
+          tags:  ${{secrets.DOCKERHUB_USERNAME}}/tp-devops-simple-api:latest 
   
       - name: Build image and push database
         uses: docker/build-push-action@v3
         with:
           context: ./github/database
-          tags:  ${{secrets.DOCKERHUB_USERNAME}}/tp-devops-simple-api:latest
+          tags:  ${{secrets.DOCKERHUB_USERNAME}}/tp-devops-database:latest
   
       - name: Build image and push httpd
         uses: docker/build-push-action@v3
         with:
           context: ./github/http-server
-          tags:  ${{secrets.DOCKERHUB_USERNAME}}/tp-devops-simple-api:latest
+          tags:  ${{secrets.DOCKERHUB_USERNAME}}/tp-devops-httpd:latest
   
       - name: Login to DockerHub
         run: docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_TOKEN }}
@@ -74,14 +74,14 @@ jobs:  # Déclaration des jobs
         uses: docker/build-push-action@v3
         with:
           context: ./github/database
-          tags:  ${{secrets.DOCKERHUB_USERNAME}}/tp-devops-simple-api:latest
+          tags:  ${{secrets.DOCKERHUB_USERNAME}}/tp-devops-database:latest
           push: ${{ github.ref == 'refs/heads/main' }}
 
       - name: Build image and push httpd
         uses: docker/build-push-action@v3
         with:
           context: ./github/http-server
-          tags:  ${{secrets.DOCKERHUB_USERNAME}}/tp-devops-simple-api:latest
+          tags:  ${{secrets.DOCKERHUB_USERNAME}}/tp-devops-httpd:latest
           push: ${{ github.ref == 'refs/heads/main' }}
 
       
