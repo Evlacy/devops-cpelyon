@@ -25,4 +25,4 @@ jobs:  # Déclaration des jobs
       - name: Build and test with Maven  # Nom de l'étape
         run: mvn clean verify  # Commande Maven pour construire le projet
         # -B : mode batch 
-        working-directory: simple-api  # Répertoire de travail
+        working-directory: github/simple-api  # Répertoire de travail
