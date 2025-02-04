@@ -14,15 +14,15 @@ jobs:  # Déclaration des jobs
         working-directory: ./github  # Répertoire de travail 
 
     steps:  # Liste des étapes du job
-      - uses: actions/checkout@v2.5.0  # Action: effectuer un checkout du code
+      - uses: actions/checkout@v4  # Action: effectuer un checkout du code
 
       - name: Set up JDK 21  
-        uses: actions/setup-java@v3  # Action: installer et configurer Java
+        uses: actions/setup-java@v4  # Action: installer et configurer Java
         with:
-          distribution: 'adopt'  # Choix de la distribution Java (Adoptium)
+          distribution: 'corretto'  # Choix de la distribution Java (Adoptium)
           java-version: '21'  # Version 
 
       - name: Build and test with Maven  # Nom de l'étape
-        run: mvn -B test --file simple-api/pom.xml  # Commande Maven pour construire le projet
+        run: mvn clean verify  # Commande Maven pour construire le projet
         # -B : mode batch 
-        # --file : indique le chemin spécifique du fichier
+        working-directory: simple-api  # Répertoire de travail
