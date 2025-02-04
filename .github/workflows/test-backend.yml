@@ -24,10 +24,5 @@ jobs:
           java-version: '21'
 
       - name: Build and test with Maven
-        run: mvn -B verify sonar:sonar \
-          -Dsonar.projectKey=Evlacy_devops-cpelyon \
-          -Dsonar.organization=evlacy \
-          -Dsonar.host.url=https://sonarcloud.io \
-          -Dsonar.login=${{ secrets.SONAR_TOKEN }} \
-          --file ./pom.xml
+        run: mvn -B verify sonar:sonar -Dsonar.projectKey=Evlacy_devops-cpelyon -Dsonar.organization=evlacy -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=${{ secrets.SONAR_TOKEN }} --file ./pom.xml
         working-directory: github/simple-api
