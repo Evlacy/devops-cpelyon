@@ -5,15 +5,18 @@
 - docker-machine ip default
 
 # Question 1-1 Why should we run the container with a flag -e to give the environment variables?
-Pour donner les variables d'environnement au conteneur pour que l'application fonctionne correctement et puisse se connecter à la base de données et à d'autres services nécessaires. De plus, on évite de mettre les informations sensibles dans le code source
+
+- Pour donner les variables d'environnement au conteneur pour que l'application fonctionne correctement et puisse se connecter à la base de données et à d'autres services nécessaires. De plus, on évite de mettre les informations sensibles dans le code source
 
 # Question 1-2 Why do we need a volume to be attached to our postgres container?
-Un volume permet de conserver les données de la base de données même si le conteneur est arrêté ou supprimé. Sinon, les données seraient perdues à chaque redémarrage du conteneur 
+
+- Un volume permet de conserver les données de la base de données même si le conteneur est arrêté ou supprimé. Sinon, les données seraient perdues à chaque redémarrage du conteneur 
 
 # Question 1-3 Document your database container essentials: commands and Dockerfile.
 
 ## Dockerfile
 
+```Dockerfile	
 FROM postgres:14.1-alpine
 
 ENV POSTGRES_DB=db \
@@ -21,6 +24,7 @@ ENV POSTGRES_DB=db \
    POSTGRES_PASSWORD=pwd
 
 COPY ./initdb-scripts/*.sql /docker-entrypoint-initdb.d/
+```
 
 # Build et run
 
@@ -35,10 +39,11 @@ COPY ./initdb-scripts/*.sql /docker-entrypoint-initdb.d/
 
 # Question 1-4 Why do we need a multistage build? And explain each step of this Dockerfile.
 
-Un multi-stage build dans Docker est utilisé pour réduire la taille de l'image finale et séparer les étapes de construction et d'exécution, ça de réduit la taille des images, améliore la sécurité, simplifie la gestion 
+- Un multi-stage build dans Docker est utilisé pour réduire la taille de l'image finale et séparer les étapes de construction et d'exécution, ça de réduit la taille des images, améliore la sécurité, simplifie la gestion 
 
 ## Dockerfile
 
+```Dockerfile
 FROM maven:3.9.9-amazoncorretto-21 AS myapp-build 
 -> On utilise une image maven pour construire l'application
 
@@ -63,6 +68,7 @@ WORKDIR $MYAPP_HOME -> On se place dans le répertoire de l'application
 COPY --from=myapp-build $MYAPP_HOME/target/*.jar $MYAPP_HOME/myapp.jar -> On copie le fichier jar de l'étape de build dans l'étape de run
 
 ENTRYPOINT ["java", "-jar", "myapp.jar"] -> On exécute l'application avec la commande java -jar myapp.jar
+```
 
 # Question 1-5 Why do we need a reverse proxy?
 

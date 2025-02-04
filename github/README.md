@@ -3,8 +3,8 @@
 # Question 2-1 What are testcontainers?
 
 - Les testcontainers sont des conteneurs Docker qui sont utilisés pour les tests unitaires et d'intégration
-- Ca permet de tester le code, les services, les bases de données, les applications... dans un environnement isolé et contrôlé
-- Utilisé pour des services externes comme les bases de données, les services web...
+- Ca permet de tester le code, les services, les bases de données, les applications... dans un environnement isolé
+- Il est utilisé pour tester les applications qui dépendent de services externes
 
 # Question 2-2 Document your Github Actions configurations.
 
@@ -25,18 +25,19 @@ jobs:  # Déclaration des jobs
         working-directory: ./github  # Répertoire de travail 
 
     steps:  # Liste des étapes du job
-      - uses: actions/checkout@v2.5.0  # Action: effectuer un checkout du code
+      - uses: actions/checkout@v4  # Action: effectuer un checkout du code
 
       - name: Set up JDK 21  
-        uses: actions/setup-java@v3  # Action: installer et configurer Java
+        uses: actions/setup-java@v4  # Action: installer et configurer Java
         with:
-          distribution: 'adopt'  # Choix de la distribution Java (Adoptium)
+          distribution: 'corretto'  # Choix de la distribution de Java
           java-version: '21'  # Version 
 
       - name: Build and test with Maven  # Nom de l'étape
-        run: mvn -B package --file simple-api/pom.xml  # Commande Maven pour construire le projet
+        run: mvn -B verify sonar:sonar -Dsonar.projectKey=Evlacy_devops-cpelyon -Dsonar.organization=evlacy -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=${{ secrets.SONAR_TOKEN }}  --file ./pom.xml
+
         # -B : mode batch 
-        # --file : indique le chemin spécifique du fichier
+        working-directory: github/simple-api  # Répertoire de travail
 ```
 
 # Question 2-3 For what purpose do we need to push docker images?
@@ -46,3 +47,21 @@ jobs:  # Déclaration des jobs
 - Pour les déployer sur des serveurs
 
 # Question 2-4 Document your quality gate configuration.
+
+- SonarQube est un outil d'analyse statique de code source
+- Il permet de mesurer la qualité du code source
+- Il nous donne des infos sur la qualité du code, les bugs, les vulnérabilités, les codes dupliqués et pleins d'autres trucs
+- Il est lancé après la construction du projet Maven
+- On peut voir les résultats sur l'interface SonarQube 
+
+```yaml
+      - name: Build and test with Maven
+        run: mvn -B verify sonar:sonar -Dsonar.projectKey=Evlacy_devops-cpelyon -Dsonar.organization=evlacy -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=${{ secrets.SONAR_TOKEN }} --file ./pom.xml
+        working-directory: github/simple-api
+```
+
+- `mvn verify sonar:sonar` : commande Maven pour lancer l'analyse SonarQube
+- `-Dsonar.projectKey=Evlacy_devops-cpelyon` : clé du projet SonarQube
+- `-Dsonar.organization=evlacy` : organisation SonarQube
+- `-Dsonar.host.url=https://sonarcloud.io` : URL de l'instance SonarQube
+- `-Dsonar.login=${{ secrets.SONAR_TOKEN }}` : token SonarQube stocké dans les secrets GitHub
