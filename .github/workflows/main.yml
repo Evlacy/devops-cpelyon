@@ -25,4 +25,4 @@ jobs:
 
       # Build and test with Maven
       - name: Build and test with Maven
-        run: mvn -B package --file pom.xml
+        run: mvn -B package --file simple-api/pom.xml
