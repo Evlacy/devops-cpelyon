@@ -14,7 +14,7 @@ services:
       - DATABASE_HOST=database
       - DATABASE_PASSWORD=pwd
     ports:
-      - "8080:8080"  
+      - "8080:8080"
     networks:
       - my-network
 
@@ -27,8 +27,6 @@ services:
 
   front:
     build: "devops-front-main"
-    ports:
-      - "8080:80"
     networks:
       - my-network
 
