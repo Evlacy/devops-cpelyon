@@ -4,5 +4,4 @@
     image: evlacy/tp-devops-front:latest
     pull: yes
     networks:
-      - name: appnetwork
-      - name: appnetwork2
+      - name: appnetwork3

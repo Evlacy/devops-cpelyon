@@ -5,3 +5,7 @@
 - name: Create the second network
   community.docker.docker_network:
     name: appnetwork2
+
+- name: Create the third network
+  community.docker.docker_network:
+    name: appnetwork3

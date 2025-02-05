@@ -5,6 +5,7 @@
     pull: yes
     networks:
       - name: appnetwork
-      - name: appnetwork2
+      - name: appnetwork3
     ports:
       - "80:80"
+      - "8080:8080"
