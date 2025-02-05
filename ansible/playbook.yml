@@ -1,11 +1,11 @@
-- hosts: all
-  gather_facts: true 
-  become: true
+- hosts: all # on cible toutes les machines
+  gather_facts: true # on récupère les infos sur les machines
+  become: true # on passe en root
   vars:
     ansible_python_interpreter: /usr/bin/python3
-  roles:
+  roles: # on appelle les roles
     # - docker
-    - network
+    - network 
     - copy
     - database
     - app

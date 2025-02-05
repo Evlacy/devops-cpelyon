@@ -1,5 +1,4 @@
 services:
-
   database:
     build: "database"
     environment:
@@ -26,6 +25,8 @@ services:
 
   front:
     build: "devops-front-main"
+    ports:
+      - "8080:80"
     networks:
       - my-network
 
