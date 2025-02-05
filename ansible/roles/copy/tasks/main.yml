@@ -1,0 +1,7 @@
+- name: Copy .env
+  ansible.builtin.copy:
+    src: /home/evlacy/cpe/s8/devops/devops-cpelyon/ansible/.env
+    dest: /.env
+    owner: admin
+    group: admin
+    mode: '0644'

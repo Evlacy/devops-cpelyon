@@ -1,0 +1,9 @@
+- name: Launch Application Container
+  community.docker.docker_container:
+    name: simple-api
+    image: evlacy/tp-devops-simple-api:latest
+    pull: yes
+    env_file: /.env
+    networks:
+      - name: appnetwork
+      - name: appnetwork2

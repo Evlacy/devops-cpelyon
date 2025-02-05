@@ -1,0 +1,10 @@
+- name: Launch Database Container
+  community.docker.docker_container:
+    name: database
+    image: evlacy/tp-devops-database:latest
+    pull: yes
+    env_file: /.env
+    networks:
+      - name: appnetwork
+    volumes:
+      - db-volume:/var/lib/postgresql/data

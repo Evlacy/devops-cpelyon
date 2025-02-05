@@ -1,0 +1,8 @@
+- hosts: all
+  gather_facts: true
+  become: true
+
+  tasks:
+    - name: Create a volume
+      community.docker.docker_volume:
+        name: db-volume

@@ -24,8 +24,15 @@ services:
     networks:
       - my-network
 
+  front:
+    build: "devops-front-main"
+    ports:
+      - "8080:8080"
+    networks:
+      - my-network
+
 networks:
   my-network:
 
 volumes:
-  db-volume :
+  db-volume:
