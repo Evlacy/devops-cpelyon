@@ -4,6 +4,7 @@
     image: evlacy/tp-devops-httpd:latest
     pull: yes
     networks:
+      - name: appnetwork
       - name: appnetwork2
     ports:
       - "80:80"
