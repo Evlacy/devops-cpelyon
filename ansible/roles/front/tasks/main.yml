@@ -3,9 +3,6 @@
     name: front
     image: evlacy/tp-devops-front:latest
     pull: yes
-    state: started
-    ports:
-      - "8080:80" 
     networks:
       - name: appnetwork
       - name: appnetwork2
