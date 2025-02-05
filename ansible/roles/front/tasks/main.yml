@@ -1,1 +1,8 @@
-# front
+- name: Launch Front container
+  community.docker.docker_container:
+    name: front
+    image: evlacy/tp-devops-front:latest
+    pull: yes
+    networks:
+      - name: appnetwork
+      - name: appnetwork2
