@@ -27,8 +27,13 @@ services:
 
   front:
     build: "devops-front-main"
+    environment:
+      - VUE_APP_API_URL=http://localhost/api
+    ports:
+      - "8080:80"
     networks:
       - my-network
+
 
 networks:
   my-network:
