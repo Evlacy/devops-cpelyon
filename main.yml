@@ -28,8 +28,6 @@ jobs:  # Déclaration des jobs
         # -B : mode batch 
         working-directory: github/simple-api  # Répertoire de travail
 
-
-
   build-and-push-docker-image:
     needs: test-backend
     # run only when code is compiling and tests are passing
