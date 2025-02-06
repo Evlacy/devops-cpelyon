@@ -18,7 +18,6 @@ jobs:
           ANSIBLE_PRIVATE_KEY: ${{ secrets.RSA_PRIVATE_KEY }}
         run: |
           echo "${ANSIBLE_PRIVATE_KEY}" > private_key.pem
-          chmod 600 private_key.pem
-          export ANSIBLE_HOST_KEY_CHECKING=False
+          chmod 400 private_key.pem
           ansible-playbook -i ansible/inventories/setup.yml ansible/playbook.yml --private-key private_key.pem
           rm -f private_key.pem
