@@ -8,6 +8,7 @@ on:
       - completed
     branches:
       - main
+    status: success
   pull_request:
 
 
