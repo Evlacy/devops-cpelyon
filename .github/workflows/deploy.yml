@@ -23,11 +23,17 @@ jobs:
           python -m pip install --upgrade pip
           pip install ansible
 
+      - name: Add Host Key to Known Hosts
+        run: |
+          mkdir -p ~/.ssh
+          ssh-keyscan -H ahmet.altinel.takima.cloud >> ~/.ssh/known_hosts
+
       - name: Run Ansible Playbook
         env:
           ANSIBLE_PRIVATE_KEY: ${{ secrets.RSA_PRIVATE_KEY }}
         run: |
           echo "${ANSIBLE_PRIVATE_KEY}" > private_key.pem
           chmod 600 private_key.pem
+          export ANSIBLE_HOST_KEY_CHECKING=False
           ansible-playbook -i ansible/inventories/setup.yml ansible/playbook.yml --private-key private_key.pem
           rm -f private_key.pem
