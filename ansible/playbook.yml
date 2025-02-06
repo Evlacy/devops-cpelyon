@@ -6,7 +6,7 @@
   roles: # on appelle les roles
     # - docker
     - network 
-    - copy
+    # - copy
     - database
     - app
     - proxy
