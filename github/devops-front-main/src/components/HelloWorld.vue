@@ -1,6 +1,9 @@
 <template>
   <div class="hello">
     <DepartmentList />
+    <div>
+      test cicd
+    </div>
   </div>
 </template>
 
