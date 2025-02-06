@@ -19,5 +19,6 @@ jobs:
         run: |
           echo "${ANSIBLE_PRIVATE_KEY}" > private_key.pem
           chmod 400 private_key.pem
+          ssh-keyscan -t rsa,dsa ahmet.altinel.takima.cloud >> ~/.ssh/known_hosts
           ansible-playbook -i ansible/inventories/setup.yml ansible/playbook.yml --private-key private_key.pem
           rm -f private_key.pem
