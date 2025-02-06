@@ -9,7 +9,7 @@ jobs:  # Déclaration des jobs
   test-backend:  # Nom du job
     runs-on: ubuntu-22.04  # Le job sera exécuté sur une Ubuntu 22.04
     
-    defaults:
+    defaults: 
       run:
         working-directory: ./github  # Répertoire de travail 
 
