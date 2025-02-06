@@ -13,7 +13,6 @@ on:
       - prod
   pull_request:
 
-
 jobs:
   deploy:
     runs-on: ubuntu-latest
