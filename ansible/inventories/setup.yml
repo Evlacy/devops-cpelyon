@@ -1,7 +1,7 @@
 all:
  vars:
    ansible_user: admin
-   ansible_ssh_private_key_file: /home/evlacy/cpe/s8/devops/id_rsa
+   ansible_ssh_private_key_file: ${{ secrets.RSA_PRIVATE_KEY }}
  children:
    prod:
      hosts: admin@ahmet.altinel.takima.cloud
