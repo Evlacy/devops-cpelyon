@@ -1,7 +1,7 @@
 - name: Copy .env
   ansible.builtin.copy:
-    src: /home/evlacy/cpe/s8/devops/devops-cpelyon/ansible/.env
-    dest: /.env
-    owner: admin
-    group: admin
-    mode: '0644'
+    src: /home/evlacy/cpe/s8/devops/devops-cpelyon/ansible/.env # le chemin du fichier source
+    dest: /.env  # le chemin de destination
+    owner: admin # le propriétaire du fichier
+    group: admin # le groupe du fichier
+    mode: '0644' # les droits du fichier

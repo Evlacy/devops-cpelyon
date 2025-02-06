@@ -2,7 +2,7 @@
   gather_facts: true # on récupère les infos sur les machines
   become: true # on passe en root
   vars:
-    ansible_python_interpreter: /usr/bin/python3
+    ansible_python_interpreter: /usr/bin/python3 # on spécifie l'interpréteur Python
   roles: # on appelle les roles
     # - docker
     - network 

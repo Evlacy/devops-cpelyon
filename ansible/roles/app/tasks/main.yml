@@ -1,9 +1,9 @@
-- name: Launch Application Container
-  community.docker.docker_container:
-    name: simple-api
-    image: evlacy/tp-devops-simple-api:latest
-    pull: yes
-    env_file: /.env
-    networks:
-      - name: appnetwork
+- name: Launch Application Container # on lance le container de l'application
+  community.docker.docker_container: # on utilise le module docker_container de la communauté
+    name: simple-api # le nom du container
+    image: evlacy/tp-devops-simple-api:latest # l'image du container dans le Docker Hub
+    pull: yes # on demande à Docker de tirer l'image à chaque fois
+    env_file: /.env # le fichier d'environnement dans le container
+    networks: # les réseaux auxquels le container doit être connecté pour communiquer avec les autres containers
+      - name: appnetwork 
       - name: appnetwork2

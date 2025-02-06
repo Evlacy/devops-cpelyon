@@ -1,5 +1,5 @@
 - name: Create the first network 
-  community.docker.docker_network: # on utilise le module docker_network pour creer 1 reseau interne et 1 reseau externe
+  community.docker.docker_network: # on utilise le module docker_network pour creer 1 reseau interne, externe et pour le front (3 réseaux)
     name: appnetwork 
 
 - name: Create the second network

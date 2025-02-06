@@ -1,7 +1,7 @@
 - name: Launch Front container
   community.docker.docker_container:
-    name: front
-    image: evlacy/tp-devops-front:latest
-    pull: yes
-    networks:
+    name: front # le nom du container
+    image: evlacy/tp-devops-front:latest # l'image du container dans le Docker Hub
+    pull: yes # on demande à Docker de tirer l'image à chaque fois
+    networks: # les réseaux auxquels le container doit être connecté pour communiquer avec les autres containers
       - name: appnetwork3

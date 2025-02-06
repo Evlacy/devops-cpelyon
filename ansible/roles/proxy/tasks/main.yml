@@ -1,11 +1,11 @@
 - name: Launch Proxy Container
   community.docker.docker_container:
-    name: http-server
-    image: evlacy/tp-devops-httpd:latest
-    pull: yes
-    networks:
+    name: http-server # le nom du container
+    image: evlacy/tp-devops-httpd:latest # l'image du container dans le Docker Hub
+    pull: yes # on demande à Docker de tirer l'image à chaque fois
+    networks: # les réseaux auxquels le container doit être connecté pour communiquer avec les autres containers
       - name: appnetwork
       - name: appnetwork3
-    ports:
+    ports: # les ports à exposer pour accéder à l'application
       - "80:80"
       - "8080:8080"

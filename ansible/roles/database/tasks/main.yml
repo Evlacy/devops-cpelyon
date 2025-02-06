@@ -1,10 +1,10 @@
-- name: Launch Database Container
+- name: Launch Database Container 
   community.docker.docker_container:
     name: database
-    image: evlacy/tp-devops-database:latest
-    pull: yes
-    env_file: /.env
-    networks:
+    image: evlacy/tp-devops-database:latest # l'image du container dans le Docker Hub
+    pull: yes # on demande à Docker de tirer l'image à chaque fois
+    env_file: /.env # le fichier d'environnement dans le container
+    networks: # les réseaux auxquels le container doit être connecté pour communiquer avec les autres containers
       - name: appnetwork
     volumes:
-      - db-volume:/var/lib/postgresql/data
+      - db-volume:/var/lib/postgresql/data # on monte un volume pour la base de données (creer avec le playbookvolumes.yml)
