@@ -1,0 +1,36 @@
+name: Deploy
+
+on:
+  workflow_run:
+    workflows:
+      - Build and Push Docker Images
+    types:
+      - completed
+    branches:
+      - main
+  push:
+    branches:
+      - prod
+  pull_request:
+
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Run Ansible Playbook
+        env:
+          ANSIBLE_PRIVATE_KEY: ${{ secrets.RSA_PRIVATE_KEY }}
+          ENV: ${{ secrets.ENV }}
+        run: |
+          echo "${ANSIBLE_PRIVATE_KEY}" > private_key.pem
+          echo "${ENV}" > env
+          chmod 400 private_key.pem
+          chmod 400 env
+          mkdir -p ~/.ssh
+          ssh-keyscan -t rsa,dsa ahmet.altinel.takima.cloud >> ~/.ssh/known_hosts
+          ansible-playbook -i ansible/inventories/setup.yml ansible/playbook.yml --private-key private_key.pem
+          rm -f private_key.pem
